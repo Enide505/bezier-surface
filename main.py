@@ -33,9 +33,13 @@ def update_plot(rotation_x, rotation_y):
     surface = bezier_surface(control_points)
     ax.plot_surface(surface[:, :, 0], surface[:, :, 1], surface[:, :, 2], cmap='viridis')
 
-    ax.set_xlabel('Ось X')
-    ax.set_ylabel('Ось Y')
-    ax.set_zlabel('Ось Z')
+    ax.quiver(0, 0, 0, 1.5, 0, 0, color='red', arrow_length_ratio=0.1)  # Ось X
+    ax.quiver(0, 0, 0, 0, 1.5, 0, color='green', arrow_length_ratio=0.1)  # Ось Y
+    ax.quiver(0, 0, 0, 0, 0, 1.5, color='blue', arrow_length_ratio=0.1)  # Ось Z
+
+    ax.text(1.5, 0, 0, 'X', color='red')
+    ax.text(0, 1.5, 0, 'Y', color='green')
+    ax.text(0, 0, 1.5, 'Z', color='blue')
 
     ax.view_init(rotation_x, rotation_y)
     canvas.draw()
