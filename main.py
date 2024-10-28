@@ -28,6 +28,17 @@ def bezier_surface(control_points, resolution=20):
     return surface
 
 
+def set_fixed_axis_limits():
+    control_points_np = np.array(control_points)
+    x_min, x_max = control_points_np[:, :, 0].min(), control_points_np[:, :, 0].max()
+    y_min, y_max = control_points_np[:, :, 1].min(), control_points_np[:, :, 1].max()
+    z_min, z_max = control_points_np[:, :, 2].min(), control_points_np[:, :, 2].max()
+
+    ax.set_xlim(x_min, x_max)
+    ax.set_ylim(y_min, y_max)
+    ax.set_zlim(z_min, z_max)
+
+
 def update_plot(rotation_x, rotation_y):
     ax.clear()
 
@@ -50,6 +61,7 @@ def update_plot(rotation_x, rotation_y):
     ax.text(0, 0, 1.5, 'Z', color='blue')
 
     ax.view_init(rotation_x, rotation_y)
+    set_fixed_axis_limits()
     canvas.draw()
 
 
